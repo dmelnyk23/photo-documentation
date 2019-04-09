@@ -1,0 +1,37 @@
+ion-header::after {
+    background-image: none;
+}
+ion-header{
+    text-align: center;
+    height: 63px;
+    margin: 0px;
+    background-color: rgb(0, 153, 153);
+    color: white;
+    border: none;
+}
+ion-header>ion-button{
+    margin: 0px;
+    padding: 0px;
+    width: 75px;
+    float: left;
+    --box-shadow:none;
+    height: 63px;
+}
+
+ion-header>ion-title{
+    padding-top:  17px;
+}
+
+ion-content>ion-button{
+    --box-shadow:none;
+    border-bottom: 1px solid; 
+    border-bottom-color: rgb(0, 204, 204);
+    
+}
+
+ion-icon{
+    height: 65px;
+    width: 65px;
+    margin: 0px;
+    padding: 0px;
+}

@@ -1,0 +1,103 @@
+ion-header::after {
+    background-image: none;
+}
+
+ion-header{
+    text-align: center;
+    height: 63px;
+    margin: 0px;
+    background-color: rgb(0, 153, 153);
+    color: white;
+    border: none;
+}
+ion-header>ion-button{
+    margin: 0px;
+    padding: 0px;
+    width: 75px;
+    float: left;
+    --box-shadow:none;
+    height: 63px;
+}
+
+ion-header>ion-title{
+    padding-top:  17px;
+}
+
+ion-content{
+     --overflow: hidden;
+}
+
+ion-content>.container-img>img{
+    height: 100%; 
+    width: 100%; 
+}
+
+ion-content>.container-img{
+    height: 40%; 
+    //height: auto; 
+    width: 100%; 
+}
+
+ion-content>.information-div{
+    height: 60%; 
+    //height: auto; 
+    width: 100%; 
+    background-color: rgb(216, 216, 216);
+}
+
+ion-content>.information-div>div>ion-checkbox{
+    height: 15px;
+    width: 15px;
+}
+
+ion-content>.information-div>div>ion-textarea{
+    background-color: white;
+    border: 1px solid;
+}
+ion-content>.information-div>div{
+    margin-left: 20px;
+    margin-right: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+ion-content>.information-div>div>ion-list{
+    border: none;
+    padding: 0px;
+}
+
+ion-footer{
+    height: 100px;
+}
+
+ion-footer>div{
+    width: 65%;
+    height: 100%;
+    display: inline-block;
+}
+ion-footer>.close-button-div{
+    width: 35%;
+    height: 100%;
+    display: inline-block;
+}
+
+ion-footer>div>ion-button{
+    width: 100%;
+    height: 100%;
+    border: none;
+    margin: 0px;
+}
+
+ion-footer>close-button-div>ion-button{
+    width: 100%;
+    height: 100%;
+    border: none;
+    margin: 0px;
+}
+
+ion-icon{
+    height: 65px;
+    width: 65px;
+    margin: 0px;
+    padding: 0px;
+}

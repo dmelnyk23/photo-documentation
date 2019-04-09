@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-button size="large" expand='full' (click)='backButton()'>
+    <ion-icon mode='ios' slot="icon-only" name="arrow-dropleft"></ion-icon>
+  </ion-button>
+  <ion-title>
+    <!-- {{room.address}} -->
+  </ion-title>
+</ion-header>
+
+<ion-content>
+  <div class="container">
+    <img [src]="src" >
+    <button *ngIf='showButton' (click)="takePhoto()" >
+    Wahlen Sie das Bild aus
+  </button>
+  <button class="andern-button" *ngIf='hideButton' (click)="takeOhterPhote()">
+    Bild andern
+  </button>
+</div>
+</ion-content>
+
+<ion-footer>
+  <div>
+    <ion-button size='large' expand="full" [disabled]="!hideButton" color="secondary" (click)="save()">
+      Foto spaichern
+    </ion-button>
+  </div>
+</ion-footer>

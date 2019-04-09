@@ -1,0 +1,15 @@
+<ion-header>
+  <ion-button size="large" expand='full' (click)='backButton(returnPath)'>
+    <ion-icon mode='ios' slot="icon-only" name="arrow-dropleft"></ion-icon>
+  </ion-button>
+  <ion-title>
+    {{pageNavigation}}  
+  </ion-title>
+</ion-header>
+
+<ion-content>
+  <ion-button *ngFor="let data of dataToShow" expand='full' color='light' size="large"
+    (click)='locationButtonClick(data)'>
+      {{data.info}}
+  </ion-button>
+</ion-content>

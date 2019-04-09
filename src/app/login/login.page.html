@@ -1,0 +1,20 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-title>
+        SIGN IN
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content>
+    <div class="inputs-div">
+      <ion-input [(ngModel)]='login' placeholder="LOGIN"></ion-input>
+      <ion-input [(ngModel)]="password" type="password" placeholder="PASSWORD"></ion-input>
+    </div>
+  </ion-content>
+  
+  <ion-footer>
+    <div>
+      <ion-button size="large" expand="full" (click)='signIn()' >SIGN IN</ion-button>
+    </div>
+  </ion-footer>

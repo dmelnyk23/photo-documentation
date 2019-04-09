@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-button size="large" expand='full' (click)='backButton()'>
+    <ion-icon mode='ios' size='large' slot="icon-only" name="arrow-dropleft"></ion-icon>
+  </ion-button>
+  <ion-title>
+    {{this.address}}
+  </ion-title>
+</ion-header>
+
+<ion-content>
+  <div class="container-img">
+    <img src="https://static.boredpanda.com/blog/wp-content/uploads/2017/04/taken-byhana__kitty-6-png__700.jpg">
+  </div>
+  <div class="information-div">
+    <div>
+      <ion-list>
+        <ion-item>
+          <ion-label>Gewerk</ion-label>
+          <ion-select interface='popover' name='gewerk' [(ngModel)]='gewerkChoice' placeholder='Select'>
+            <ion-select-option value="Gewerk 1">gewerk 1</ion-select-option>
+            <ion-select-option value="Gewerk 2">gewerk 2</ion-select-option>
+            <ion-select-option value="Gewerk 3">gewerk 3</ion-select-option>
+            <ion-select-option value=''>none</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label>Mangeltyp</ion-label>
+          <ion-select interface='popover' name='mangeltyp' [(ngModel)]='mangeltypChoice' placeholder='Select'>
+            <ion-select-option value="Mangeltyp 1">Mangeltyp 1</ion-select-option>
+            <ion-select-option value="Mangeltyp 2">Mangeltyp 2</ion-select-option>
+            <ion-select-option value="Mangeltyp 3">Mangeltyp 3</ion-select-option>
+            <ion-select-option value=''>none</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-list>
+    </div>
+    <div>
+      <ion-textarea [(ngModel)]='description' placeholder="Description"></ion-textarea>
+    </div>
+    <div>
+      <ion-checkbox [(ngModel)]='MangelprozessStarten' color="primary"></ion-checkbox>
+      <ion-label> Mangelprozess starten</ion-label>
+    </div>
+  </div>
+</ion-content>
+
+<ion-footer>
+    <div>
+      <ion-button size='large' expand="full" color="secondary">
+        Spaichern
+      </ion-button>
+    </div>
+    <div class="close-button-div">
+        <ion-button size='large' expand="full" color="primary" (click)='exitButton()'>
+            <ion-icon  slot="icon-only" name="close"></ion-icon>
+        </ion-button>
+      </div>
+  </ion-footer>
