@@ -1,6 +1,11 @@
 // Ionic Variables and Theming. For more info, please see:
 // http://ionicframework.com/docs/theming/
 /** Ionic CSS Variables **/
+
+ion-spinner{
+  width: 35% !important;
+  height: 35% !important;
+}
 :root {
   /** primary **/
   --ion-color-primary: rgb(0, 204, 204);

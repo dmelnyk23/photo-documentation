@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 import { PhotoService } from '../services/photo.service';
-import { Photo } from '../models/photo.model';
+import { RoomService } from '../services/room.service';
 
 @Component({
   selector: 'app-save-photo',
@@ -11,36 +10,60 @@ import { Photo } from '../models/photo.model';
 })
 
 export class SavePhotoPage implements OnInit {
+  
+  //variables fro storing photo data
+  address: string = " ";
+  description: string = " ";
+  mangeltypChoice: string = "none";
+  gewerkChoice: string = "none";
+  mangelprozessStarten: boolean = false;
 
-  address: string = '';
-  description: string = '';
-  mangeltypChoice: string = '';
-  gewerkChoice: string = '';
-  MangelprozessStarten: boolean = false;
-  photos: Photo[];
-
+  //variables for showing/hiding content while loading
+  savePhotoContent: boolean = true;
+  showSpinner: boolean = false;
+  showFooter: boolean = true;
+  showSavingButtons: boolean = true;
+  showPostSavingContent: boolean = false;
+ 
+  
   constructor(
     private router: Router,
-    private location: Location,
-    private route: ActivatedRoute,
     private photoService: PhotoService,
-  ) { }
-
-  getPhotos(): void {
-    this.photoService.getPhotos().subscribe(data =>{
-      this.photos = data;
-      console.log(data);
-    } );
+    private roomService: RoomService,
+   ) { }
+ 
+  backButton(): void {
+    this.router.navigateByUrl('/photo-page');
   }
 
-
-  backButton(): void {
-    this.location.back();
+  savePhoto(){
+    
+    this.savePhotoContent = false;
+    this.showFooter = false;
+    this.showSavingButtons = false;
+    this.showSpinner = true;
+    //assign data to service variable that will saved to database 
+    this.photoService.photoToSave.address = this.roomService.choosenRoom.address;
+    this.photoService.photoToSave.photo = this.photoService.uploadedPhoto;
+    this.photoService.photoToSave.gewerk = this.gewerkChoice;
+    this.photoService.photoToSave.mangeltyp = this.mangeltypChoice;
+    this.photoService.photoToSave.description = this.description;
+    this.mangelprozessStarten ? this.photoService.photoToSave.mangelprozessStarten = 'Yes' :
+     this.photoService.photoToSave.mangelprozessStarten = 'No';
+     //saving photo to database 
+     this.photoService.savePhoto().subscribe(() => {
+        this.showSpinner = false;
+        this.showPostSavingContent = true;
+        this.showFooter = true;
+        this.photoService.uploadedPhoto = '';
+      });
+    }
+    
+    anotherPhotoClick(){// opportunity to take one more photo after save operations
+    this.router.navigateByUrl('/photo-page');
   }
 
   ngOnInit() {
-    //this.address = this.route.snapshot.paramMap.get('address');
-    this.getPhotos();
 
   }
 

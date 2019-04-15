@@ -6,10 +6,9 @@ const routes: Routes = [
   { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
   { path: 'home', loadChildren: './home/home.module#HomePageModule' },
   { path: 'location', loadChildren: './location/location.module#LocationPageModule' },
-  { path: 'photo-page/:id', loadChildren: './photo-page/photo-page.module#PhotoPagePageModule' },
-  { path: 'save-photo/:address', loadChildren: './save-photo/save-photo.module#SavePhotoPageModule' },
-  // { path: 'list-photo', loadChildren: './list-photo/list-photo' },
-
+  { path: 'photo-page', loadChildren: './photo-page/photo-page.module#PhotoPagePageModule' },
+  { path: 'save-photo', loadChildren: './save-photo/save-photo.module#SavePhotoPageModule' },
+  { path: 'photos-list', loadChildren: './photos-list/photos-list.module#PhotosListPageModule' },
 ];
 
 @NgModule({

@@ -8,13 +8,14 @@
   
   <ion-content>
     <div class="inputs-div">
-      <ion-input [(ngModel)]='login' placeholder="LOGIN"></ion-input>
-      <ion-input [(ngModel)]="password" type="password" placeholder="PASSWORD"></ion-input>
+      <ion-input [disabled]='hideInputs' [(ngModel)]='login' placeholder="LOGIN"></ion-input>
+      <ion-input [disabled]='hideInputs' [(ngModel)]="password" type="password" placeholder="PASSWORD"></ion-input>
+      <ion-spinner *ngIf='hideInputs' color='primary' name="crescent"></ion-spinner>
     </div>
   </ion-content>
   
   <ion-footer>
     <div>
-      <ion-button size="large" expand="full" (click)='signIn()' >SIGN IN</ion-button>
+      <ion-button [disabled]='hideInputs' size="large" expand="full" (click)='signIn()' >SIGN IN</ion-button>
     </div>
   </ion-footer>

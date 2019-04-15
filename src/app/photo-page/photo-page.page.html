@@ -3,17 +3,21 @@
     <ion-icon mode='ios' slot="icon-only" name="arrow-dropleft"></ion-icon>
   </ion-button>
   <ion-title>
-    <!-- {{room.address}} -->
+    {{this.roomService.choosenRoom.address}}
   </ion-title>
 </ion-header>
 
 <ion-content>
   <div class="container">
-    <img [src]="src" >
-    <button *ngIf='showButton' (click)="takePhoto()" >
+    <img [src]="src" *ngIf="showButton">
+    <img [src]="this.photoService.uploadedPhoto" *ngIf="this.photoService.uploadedPhoto">
+      <input #file style="display: none"
+      type="file" accept='image/*'
+     (change)="preview(file.files)"/>
+    <button *ngIf='showButton' (click)="file.click()" >
     Wahlen Sie das Bild aus
   </button>
-  <button class="andern-button" *ngIf='hideButton' (click)="takeOhterPhote()">
+  <button class="andern-button" *ngIf='hideButton' (click)="file.click()">
     Bild andern
   </button>
 </div>

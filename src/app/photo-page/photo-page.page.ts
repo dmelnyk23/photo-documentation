@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { Location } from '@angular/common';
+import { Router } from '@angular/router';
+import { PhotoService } from '../services/photo.service';
 import { RoomService } from '../services/room.service';
-import { Room } from '../models/room.model';
 
 @Component({
   selector: 'app-photo-page',
@@ -11,44 +10,46 @@ import { Room } from '../models/room.model';
 })
 export class PhotoPagePage implements OnInit {
 
-  room: Room;
-  showItem: boolean = true;
-  //src: string = 'https://static.boredpanda.com/blog/wp-content/uploads/2017/04/taken-byhana__kitty-6-png__700.jpg';
-  src: string = 'https://www.searchpng.com/wp-content/uploads/2019/02/Instagram-Camera-Icon-PNG-715x715.png';
-  hideButton: boolean = false;
-  showButton: boolean = true;
+  src = 'https://www.searchpng.com/wp-content/uploads/2019/02/Instagram-Camera-Icon-PNG-715x715.png';//background img
+  hideButton: boolean; //hides buttons while loading data
+  showButton: boolean; //hides buttons while loading data
+
   constructor(
     private router: Router,
-    private location: Location,
-    private route: ActivatedRoute,
-    private roomService: RoomService,
-
+    private roomService: RoomService, 
+    private photoService: PhotoService
   ) { }
 
   backButton(): void {
-    this.location.back();
+    this.router.navigateByUrl('/location');
   }
 
-  takePhoto():void{
-    this.src = 'https://static.boredpanda.com/blog/wp-content/uploads/2017/04/taken-byhana__kitty-6-png__700.jpg'
-    this.showButton = false;
-    this.hideButton = true;
-  }
-  takeOhterPhote():void{
-    this.src = 'https://www.searchpng.com/wp-content/uploads/2019/02/Instagram-Camera-Icon-PNG-715x715.png';
-    this.showButton = true;
-    this.hideButton = false;
-  }
-  
+  imgURL: any;
 
-  save():void{
-    this.router.navigateByUrl('/save-photo/' + this.room.address);
+  preview(files) { //preview of the choosen photo 
+    this.photoService.uploadedPhoto = '';
+    if (files.length === 0)
+      return;
+
+    var reader = new FileReader();
+    reader.readAsDataURL(files[0]);
+    reader.onload = (_event) => {
+      this.photoService.uploadedPhoto = reader.result.toString();
+      this.showButton = false;
+      this.hideButton = true;
+    }
+  }
+
+
+
+  save(): void {
+    this.router.navigateByUrl('/save-photo');
   }
 
   ngOnInit() {
-    const id = +this.route.snapshot.paramMap.get('id');
-    this.room = this.roomService.getRoomByID(id);
-    // console.log(this.room.address)
+    this.photoService.uploadedPhoto = '';
+    this.hideButton = false;
+    this.showButton = true;
   }
 
 }

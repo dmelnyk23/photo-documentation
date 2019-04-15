@@ -1,15 +1,18 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Building } from '../models/building.model';
-import { Buildings } from '../mock-buildings';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BuildingService {
 
-  constructor() { }
+  buildings: Building[];
 
-  getBuildings(): Building[] {
-    return Buildings;
+  constructor(private http: HttpClient) { }
+  baseUrl: string = 'https://localhost:44354/api/building';
+ 
+  getBuildings(){
+    return this.http.get<any>(this.baseUrl);
   }
 }

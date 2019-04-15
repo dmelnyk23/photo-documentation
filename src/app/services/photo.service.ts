@@ -7,26 +7,19 @@ import {Photo} from "../models/photo.model";
 })
 export class PhotoService {
 
+  uploadedPhoto: any;
+  photoToSave: Photo = new Photo();
+  allPhotos: Photo[];
+
   constructor(private http: HttpClient) { }
-  baseUrl: string = 'https://localhost:44305/api/photos';
-
-  getPhotos() {
-    return this.http.get<Photo[]>(this.baseUrl);
+  baseUrl: string = 'https://localhost:44354/api/photo';
+  
+  savePhoto(){
+     return this.http.put<any>(this.baseUrl, this.photoToSave);
   }
 
-  getPhotoById(id: number) {
-    return this.http.get<Photo>(this.baseUrl + '/' + id);
-  }
-
-  createPhoto(photo: Photo) {
-    return this.http.post(this.baseUrl, photo);
-  }
-
-  updatePhoto(photo: Photo) {
-    return this.http.put(this.baseUrl + '/' + photo.id, photo);
-  }
-
-  deletePhoto(id: number) {
-    return this.http.delete(this.baseUrl + '/' + id);
-  }
+  GetAllPhotos(){
+    return this.http.get<any>(this.baseUrl);
+ }
+ 
 }

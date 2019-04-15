@@ -1,23 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Apartment } from '../models/apartment.model';
-import { Apartments } from '../mock-apartments';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApartmentService {
-  apartments: any[] = [];
+  apartments: Apartment[];
 
-  constructor() { }
-
-  getApartments(id: number): Apartment[] {
-    this.apartments = [];
-    Apartments.forEach(item => {
-      if (item.floorID === id) {
-        this.apartments.push(item);
-      }
-    });
-    
-    return this.apartments;
+  constructor(private http: HttpClient) { }
+  baseUrl: string = 'https://localhost:44354/api/apartment';
+ 
+  getApartment(id){
+    return this.http.get<any>(this.baseUrl + '/' + id);
   }
 }

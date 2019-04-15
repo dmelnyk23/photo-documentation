@@ -1,15 +1,13 @@
 export class Photo{
     id: number;
     photo: string;
+    address: string;
     description: string;
+    gewerk: string;
+    mangeltyp: string;
+    mangelprozessStarten: string;
+
+    public Photo(){
+        
+    }
 }
-
-
-// export class Photo{
-//     id: number;
-//     content: string;
-//     description: string;
-//     gewerk: string;
-//     mangeltyp: string;
-//     mangelprozessStarten: string;
-// }

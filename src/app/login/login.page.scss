@@ -12,6 +12,14 @@ ion-content>.inputs-div {
     height: 100%; 
     width: 100%; 
 }
+ion-content>.inputs-div>ion-spinner{
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10% !important;
+    height: 10% !important; 
+}
 
 ion-input{
     font-size: 200%;
@@ -19,7 +27,7 @@ ion-input{
     left: 50%;
     transform: translate(-50%, -50%);
 }
-
+ 
 ion-footer>ion-button{
     background-color: rgb(0, 204, 204);
     color: white;

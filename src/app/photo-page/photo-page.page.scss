@@ -25,6 +25,7 @@ ion-header>ion-title{
 
 ion-content{
     --overflow: hidden;
+    background-image: url('/background.png');
 }
 
 ion-content>.container {

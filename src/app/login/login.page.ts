@@ -2,30 +2,30 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { UserService } from '../services/user.service';
-import { User } from '../models/user.model';
-
+ 
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
+  //variables(login, password) for sign in operation.
   login: string;
   password: string;
-  user: User;
-
+  // hideInputs variable for hiding inputs while app checking for sign in data.
+  hideInputs: boolean = false;
+ 
   constructor(
     private router: Router,
     public alertController: AlertController,
     private userService: UserService,
+   ) { }
 
-  ) { }
-
-
+   //method emptyDataAlert() creates alert if login and password empty or if app failed to sign in(incorrect data)
   async emptyDataAlert() {
     const alert = await this.alertController.create({
       header: 'Error',
-      message: 'Please fill all fields',
+      message: 'Check input data',
       buttons: ['OK'],
       translucent: false
     });
@@ -33,30 +33,32 @@ export class LoginPage implements OnInit {
     await alert.present();
   }
 
+  //method checkUser() checks inputs(login, password) data,
+  // if data correct it is sends us to home page(user signed in)
   checkUser() {
-    const checkUser = {
-      login: this.login,
-      password: this.password
-    }
-
-    // this.userService.getUser(checkUser).subscribe(data =>{
-    //   this.user = data});
-    this.userService.postUser(checkUser).subscribe(data => {
-      // this.user = data;
-      console.log(data);
-    })
-
+    this.hideInputs = true;
+     this.userService.getUser(this.login, this.password).subscribe(data => {
+      if (data !== null) {
+        this.router.navigateByUrl('/home');
+        this.userService.user = data;
+        this.login = undefined;
+        this.password = undefined;
+        this.hideInputs = false;
+      }
+      else {
+        this.hideInputs = false;
+        this.emptyDataAlert();
+        this.login = undefined;
+        this.password = undefined;
+      }
+    });
   }
 
-
-  signIn(): void {
-
+  //signIn(), button(SIGN IN) click event, checks if login and password are not empty
+  signIn() {
     if (this.login !== undefined && this.password !== undefined &&
       this.login !== '' && this.password !== '') {
-      //this.router.navigateByUrl('/home');
-      this.checkUser();
-      this.login = undefined;
-      this.password = undefined;
+       this.checkUser();
     }
     else {
       this.emptyDataAlert();

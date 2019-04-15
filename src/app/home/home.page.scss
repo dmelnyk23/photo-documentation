@@ -24,6 +24,14 @@ ion-content{
 ion-content>div{
     padding-top: 200px;
 }
+ion-content>div>ion-spinner{
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10% !important;
+    height: 10% !important;
+}
 
 ion-content>div>ion-avatar{
     width:100% !important;  
@@ -32,7 +40,9 @@ ion-content>div>ion-avatar{
     max-height: 100px !important;
     margin-left: auto;
 	margin-right: auto;
-	display: block;
+    display: block;
+    border: 5px solid;
+    border-color: rgb(0, 153, 153);
 }
 
 ion-content>div>hr{

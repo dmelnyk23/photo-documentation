@@ -5,24 +5,25 @@
 
 <ion-content>
     <div>
-        <ion-avatar >
-            <img src="https://static.boredpanda.com/blog/wp-content/uploads/2017/04/taken-byhana__kitty-6-png__700.jpg">
+        <ion-spinner *ngIf='hideInputs' color='primary' name="crescent"></ion-spinner>
+        <ion-avatar *ngIf='this.userService.user.photo' >
+            <img [src]='this.userService.user.photo'>
         </ion-avatar>
         <h6>
             Fotodokumentation
         </h6>
-        <hr>
+        <hr (click)='viewAllPhotos()'>
     </div>
 </ion-content>
 
 <ion-footer>
     <div>
-        <ion-button expand="full" size="large" color='secondary' (click)='photoButton()'>
+        <ion-button [disabled]='hideInputs' expand="full" size="large" color='secondary' (click)='photoButton()'>
             <ion-icon slot="icon-only" name="camera"></ion-icon>
         </ion-button>
     </div>
     <div>
-        <ion-button size="large" expand="full" (click)='exitButton()'>
+        <ion-button [disabled]='hideInputs' size="large" expand="full" (click)='exitButton()'>
             <ion-icon slot="icon-only" name="exit"></ion-icon>
         </ion-button>
     </div>

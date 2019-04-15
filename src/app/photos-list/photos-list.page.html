@@ -1,0 +1,67 @@
+<ion-header>
+   <ion-button size="large" expand='full' (click)='backButton()'>
+      <ion-icon mode='ios' slot="icon-only" name="arrow-dropleft"></ion-icon>
+   </ion-button>
+   <ion-title>
+      Gallery
+   </ion-title>
+</ion-header>
+
+<ion-content *ngIf='allPhotoConent' class="all-photos-content">
+   <div class="all-photos-div" *ngFor="let data of this.photoService.allPhotos" (click)='showInfo(data)'>
+      <div>
+         <img src={{data.photo}} alt="img content">
+      </div>
+      <p>{{data.address}}</p>
+   </div>
+</ion-content>
+
+<ion-content *ngIf='detailsConent' class="details-content">
+   <div class="img-container">
+      <img src={{this.roomDetails.photo}} alt="failed to load photo">
+   </div>
+   <div class="infromation-container">
+      <ion-grid>
+         <ion-row>
+            <ion-col class="col-title">
+               Address
+            </ion-col>
+            <ion-col>
+               {{this.roomDetails.address}}
+            </ion-col>
+         </ion-row>
+         <ion-row>
+            <ion-col class="col-title">
+               Gewerk
+            </ion-col>
+            <ion-col>
+               {{this.roomDetails.gewerk}}
+            </ion-col>
+         </ion-row>
+         <ion-row>
+            <ion-col class="col-title">
+               Mangeltyp
+            </ion-col>
+            <ion-col>
+               {{this.roomDetails.mangeltyp}}
+            </ion-col>
+         </ion-row>
+         <ion-row>
+            <ion-col class="col-title">
+               Mangelprozess starten
+            </ion-col>
+            <ion-col>
+               {{this.roomDetails.mangelprozessStarten}}
+            </ion-col>
+         </ion-row>
+         <ion-row>
+            <ion-col class="col-title">
+               Description
+            </ion-col>
+            <ion-col>
+               {{this.roomDetails.description}}
+            </ion-col>
+         </ion-row>
+      </ion-grid>
+   </div>
+</ion-content>

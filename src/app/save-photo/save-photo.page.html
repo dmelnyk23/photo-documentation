@@ -1,15 +1,15 @@
-<ion-header>
+<ion-header *ngIf='savePhotoContent'>
   <ion-button size="large" expand='full' (click)='backButton()'>
     <ion-icon mode='ios' size='large' slot="icon-only" name="arrow-dropleft"></ion-icon>
   </ion-button>
   <ion-title>
-    {{this.address}}
+    {{this.roomService.choosenRoom.address}}
   </ion-title>
 </ion-header>
 
-<ion-content>
+<ion-content *ngIf='savePhotoContent'>
   <div class="container-img">
-    <img src="https://static.boredpanda.com/blog/wp-content/uploads/2017/04/taken-byhana__kitty-6-png__700.jpg">
+    <img [src]="this.photoService.uploadedPhoto">
   </div>
   <div class="information-div">
     <div>
@@ -20,7 +20,7 @@
             <ion-select-option value="Gewerk 1">gewerk 1</ion-select-option>
             <ion-select-option value="Gewerk 2">gewerk 2</ion-select-option>
             <ion-select-option value="Gewerk 3">gewerk 3</ion-select-option>
-            <ion-select-option value=''>none</ion-select-option>
+            <ion-select-option value='none'>none</ion-select-option>
           </ion-select>
         </ion-item>
         <ion-item>
@@ -29,7 +29,7 @@
             <ion-select-option value="Mangeltyp 1">Mangeltyp 1</ion-select-option>
             <ion-select-option value="Mangeltyp 2">Mangeltyp 2</ion-select-option>
             <ion-select-option value="Mangeltyp 3">Mangeltyp 3</ion-select-option>
-            <ion-select-option value=''>none</ion-select-option>
+            <ion-select-option value='none'>none</ion-select-option>
           </ion-select>
         </ion-item>
       </ion-list>
@@ -38,21 +38,40 @@
       <ion-textarea [(ngModel)]='description' placeholder="Description"></ion-textarea>
     </div>
     <div>
-      <ion-checkbox [(ngModel)]='MangelprozessStarten' color="primary"></ion-checkbox>
+      <ion-checkbox [(ngModel)]='mangelprozessStarten' color="primary"></ion-checkbox>
       <ion-label> Mangelprozess starten</ion-label>
     </div>
   </div>
 </ion-content>
 
-<ion-footer>
-    <div>
-      <ion-button size='large' expand="full" color="secondary">
-        Spaichern
-      </ion-button>
-    </div>
-    <div class="close-button-div">
-        <ion-button size='large' expand="full" color="primary" (click)='exitButton()'>
-            <ion-icon  slot="icon-only" name="close"></ion-icon>
-        </ion-button>
-      </div>
-  </ion-footer>
+<ion-content *ngIf='showSpinner' class="spinner-content">
+  <ion-spinner></ion-spinner>
+</ion-content>
+
+<ion-content *ngIf='showPostSavingContent' class="post-save-content">
+  <div>
+    <ion-icon color='secondary' name="checkmark"></ion-icon>
+    <h1>Das Bild wurde erfolgreich abgelegt</h1>
+  </div>
+</ion-content>
+
+<ion-footer *ngIf='showFooter'>
+  <div>
+    <ion-button *ngIf='showSavingButtons' size='large' expand="full" color="secondary" (click)='savePhoto()'>
+      Spaichern
+    </ion-button>
+    <ion-button class='more-photo-button' *ngIf='showPostSavingContent' size='large'
+     expand="full" color="secondary" (click)='anotherPhotoClick()'>
+      Weiteres Foto hinzufugen
+    </ion-button>
+  </div>
+  <div class="close-button-div">
+    <ion-button *ngIf='showSavingButtons' size='large' expand="full" color="primary" (click)='exitButton()'>
+      <ion-icon slot="icon-only" name="close"></ion-icon>
+    </ion-button>
+    <ion-button class='close-buttom' *ngIf='showPostSavingContent' size='large' expand="full" color="primary"
+      (click)='exitButton()'>
+      Beenden
+    </ion-button>
+  </div>
+</ion-footer>

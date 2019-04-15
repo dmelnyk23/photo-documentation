@@ -1,33 +1,25 @@
 import { Injectable } from '@angular/core';
 import { Room } from '../models/room.model';
-import { Rooms } from '../mock-rooms';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RoomService {
-
-  rooms: any[] = [];
-
-  constructor() { }
-
-  getRooms(id: number): Room[] {
-    this.rooms = [];
-    Rooms.forEach(item => {
-      if (item.apartmentID === id) {
-        this.rooms.push(item);
-      }
-    });
-    return this.rooms;
+  rooms: Room[];
+  choosenRoom: Room;
+  constructor(private http: HttpClient) { }
+  baseUrl: string = 'https://localhost:44354/api/room';
+ 
+  getRooms(id){
+    return this.http.get<any>(this.baseUrl + '/' + id);
   }
 
-  getRoomByID(id: number): Room {
-    let room;
+  getChoosenRoom(id){
     this.rooms.forEach(item => {
-      if (item.id === id) {
-        room = item;
-      }
+      if(item.id === id){
+        this.choosenRoom = item;
+      } 
     });
-    return room;
   }
 }
